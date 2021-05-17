@@ -13,7 +13,8 @@ function App() {
 
   }
   const [selectedDog, setSelectedDog] = useState(emptyDog)
-  const url = 'http://localhost:4500'
+  const url = 'https://dog-ap.herokuapp.com'
+  
 
     // Function to get list of Dogs
     const getDogs = () => {
@@ -38,7 +39,7 @@ function App() {
    },
     body: JSON.stringify(newDog)
   })
-  .then(()=> {})
+  .then(()=> { getDogs()})
   }
 
   const handleUpdate = (dog) => {
@@ -49,7 +50,7 @@ function App() {
       },
       body: JSON.stringify(dog)
     })
-    .then(() => {})
+    .then(() => { getDogs()})
   }
 
   //function to specifi a dog
@@ -58,6 +59,12 @@ const selectDog = (dog) => {
   setSelectedDog(dog)
 }
 
+const  deletedDog = (dog)=>{
+fetch(url + "/dog/" + dog._id , {
+  method: 'DELETE',
+
+}).then(()=> { getDogs()})
+}
   return (
     <div className="App">
       <h1>DOG LISTING SITE</h1>
@@ -71,7 +78,11 @@ const selectDog = (dog) => {
             exact
             path="/"
             render={(rp) => (
-              <Display {...rp} dogs={dogs} selectDog={selectDog} />
+              <Display {...rp} 
+              dogs={dogs}
+               selectDog={selectDog} 
+               deletedDog={deletedDog}
+               />
             )}
           />
           <Route

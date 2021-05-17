@@ -1,6 +1,6 @@
 import React from "react";
 
-const Display = ({dogs,selectDog,history}) => {
+const Display = ({dogs,selectDog,history,deletedDog}) => {
   const loaded =() => {
     return <div className="dogs">
   
@@ -15,6 +15,12 @@ const Display = ({dogs,selectDog,history}) => {
           }}>
             edit
           </button>
+          <button
+          onClick={()=>{
+            deletedDog(item)
+            
+          }}
+          >delete</button>
             </div>)})}
           </div>
   }
