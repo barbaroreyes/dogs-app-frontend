@@ -49,7 +49,7 @@ function App() {
       },
       body: JSON.stringify(dog)
     })
-    .then(() => getDogs())
+    .then(() => {})
   }
 
   //function to specifi a dog
